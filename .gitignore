@@ -1,0 +1,30 @@
+# random
+.env
+
+# quoty-front
+
+# quoty-front -> Logs
+
+quoty-front/logs
+quoty-front/*.log
+quoty-front/npm-debug.log*
+quoty-front/yarn-debug.log*
+quoty-front/yarn-error.log*
+quoty-front/pnpm-debug.log*
+quoty-front/lerna-debug.log*
+
+quoty-front/node_modules
+quoty-front/dist
+quoty-front/dist-ssr
+quoty-front/*.local
+
+# quoty-front -> Editor directories and files
+quoty-front/.vscode/*
+quoty-front/!.vscode/extensions.json
+quoty-front/.idea
+quoty-front/.DS_Store
+quoty-front/*.suo
+quoty-front/*.ntvs*
+quoty-front/*.njsproj
+quoty-front/*.sln
+quoty-front/*.sw?
