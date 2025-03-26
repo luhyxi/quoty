@@ -7,7 +7,7 @@ export async function getRandomLineFromFile(filePath: string): Promise<string> {
         // Get a random line
         const randomLine = lines[Math.floor(Math.random() * lines.length)];
         return randomLine;
-    } catch (error) {
+    } catch (error:any) {
         console.error("Error reading file:", error.message);
         throw error;
     }
