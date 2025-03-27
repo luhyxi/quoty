@@ -27,7 +27,7 @@ onMounted(fetchQuote);
 </script>
 
 <template>
-  <div class="quote-container">
+  <div class="font-[amarante-regular] text-xl max">
     <div v-if="isLoading" class="loading">Loading...</div>
     <div v-else-if="error" class="error">{{ error }}</div>
     <p v-else class="quote">{{ quote }}</p>
