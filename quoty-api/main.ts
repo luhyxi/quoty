@@ -1,13 +1,13 @@
 import { getRandomLineFromFile } from "./utils.ts";
 
-const filePath = "./snippets.csv";
+const filePath = "./snippets.txt";
 
 async function handleRequest(req: Request): Promise<Response> {
   try {
     const randomLine = await getRandomLineFromFile(filePath);
 
     return new Response(randomLine, {
-      headers: { "Content-Type": "text/csv" },
+      headers: { "Content-Type": "text/plain" },
     });
   } catch (error) {
     console.error("Error in handleRequest:", error);
