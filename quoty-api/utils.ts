@@ -1,3 +1,5 @@
+// Functions
+
 export async function getRandomLineFromFile(filePath: string): Promise<string> {
     try {
         const content = await Deno.readTextFile(filePath);
@@ -9,3 +11,16 @@ export async function getRandomLineFromFile(filePath: string): Promise<string> {
         throw error;
     }
 }
+
+// Variables
+
+export const SECURITY_HEADERS  = {
+    "Content-Type": "text/plain",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Content-Security-Policy": "default-src 'none'",
+    "Cache-Control": "no-store, max-age=0",
+};
+export const filePath:string = Deno.env.get("SNIPPETS_FILE") || "./snippets.txt";
+export const port: number = parseInt(Deno.env.get("PORT") || "8000", 10);
+export const max_requests:number = parseInt(Deno.env.get("MAX_REQUESTS_PER_MINUTE") || "100", 10 );

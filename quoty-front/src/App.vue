@@ -5,9 +5,15 @@ import Navbar from "./components/Navbar.vue";
 
 <template>
   <div class="min-h-screen">
-    <Navbar class="sticky top-0 z-50" />
-    <main class="pt-16">  <!-- Add padding-top to account for navbar height -->
+    <Navbar class="sticky top-0 z-50 h-16" />
+    <main class="pt-[var(--navbar-height)]">
       <Quote />
     </main>
   </div>
 </template>
+
+<style>
+:root {
+  --navbar-height: 4rem; /* 64px */
+}
+</style>
