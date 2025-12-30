@@ -21,6 +21,6 @@ export const SECURITY_HEADERS  = {
     "Content-Security-Policy": "default-src 'none'",
     "Cache-Control": "no-store, max-age=0",
 };
-export const filePath:string = Deno.env.get("SNIPPETS_FILE") || "./snippets.txt";
+export const filePath:string = Deno.env.get("SNIPPETS_FILE") || "./src/snippets.txt";
 export const port: number = parseInt(Deno.env.get("PORT") || "8000", 10);
 export const max_requests:number = parseInt(Deno.env.get("MAX_REQUESTS_PER_MINUTE") || "100", 10 );

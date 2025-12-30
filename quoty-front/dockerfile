@@ -1,0 +1,26 @@
+# build
+FROM node:lts-alpine as build
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+
+# Accept build arguments for environment variables (can be overridden)
+ARG VITE_FINNEGANS_API
+ARG VITE_BOOK_LINK
+ARG VITE_PORTFOLIO_LINK
+
+# Set as environment variables for the build
+ENV VITE_FINNEGANS_API=$VITE_FINNEGANS_API
+ENV VITE_BOOK_LINK=$VITE_BOOK_LINK
+ENV VITE_PORTFOLIO_LINK=$VITE_PORTFOLIO_LINK
+
+# Copy all files including .env (if it exists)
+COPY . .
+RUN npm run build
+
+# nginx server
+FROM nginx:stable-alpine as server
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

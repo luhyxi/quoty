@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quoty-test
+  namespace: default
+  labels:
+    app: quoty-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quoty-test
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: quoty-test
+      annotations:
+        kubectl.kubernetes.io/default-container: quoty-test
+    spec:
+      containers:
+        - name: quoty-test
+          image: quoty-api:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - name: quoty-test
+              containerPort: 80
+          # livenessProbe:
+          #   tcpSocket:
+          #     port: 8080
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
+          #   timeoutSeconds: 5
+          #   successThreshold: 1
+          #   failureThreshold: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /_status/healthz
+          #     port: 8080
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
+          #   timeoutSeconds: 2
+          #   successThreshold: 1
+          #   failureThreshold: 3
+          envFrom:
+            - configMapRef:
+                name: quoty-test-configmap
+          volumeMounts:
+            - name: localtime
+              mountPath: /etc/localtime
+              readOnly: true
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /usr/share/zoneinfo/US/Eastern
+            type: File
+

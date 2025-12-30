@@ -1,0 +1,16 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: quoty-test-svc
+  namespace: default
+spec:
+  selector:
+    app: quoty-test
+  type: ClusterIP
+  ports:
+  - name: quoty-test-svc
+    protocol: TCP
+    port: 8000
+    targetPort: 80
+---
